@@ -1,0 +1,32 @@
+load("//:defs.bzl", "android_instrumentation_apks")
+
+android_instrumentation_test(
+    name = "my_test",
+    target_device = ":device",
+    test_app = ":apks",
+)
+
+android_instrumentation_apks(
+    name = "apks",
+    instrumentation_apk = "test.apk",
+    target_apk = "app.apk",
+)
+
+android_device(
+    name = "device",
+    ram = 2048,
+    horizontal_resolution = 720,
+    vertical_resolution = 1280,
+    cache = 32,
+    system_image = ":dummy_image",
+    screen_density = 280,
+    vm_heap = 256,
+)
+
+filegroup(
+    name = "dummy_image",
+    srcs = [
+        "source.properties",
+        "@bazel_tools//tools/android/emulator:empty_snapshot_fs",
+    ],
+)

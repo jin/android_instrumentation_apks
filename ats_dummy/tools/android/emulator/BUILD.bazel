@@ -1,0 +1,6 @@
+py_binary(
+    name = "unified_launcher_head",
+    srcs = ["dummy.py"],
+    main = "dummy.py",
+    visibility = ["//visibility:public"]
+)
